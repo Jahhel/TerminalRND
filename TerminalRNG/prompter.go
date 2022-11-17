@@ -27,11 +27,15 @@ func main() {
 	t := prompt.Input("> ", completer)
 	fmt.Println("You selected " + t)
 	duration := time.Now().UnixMicro() - startTime
+	var r Random
 	switch t {
 	case INTERNET:
-		for i := 0; i < 100; i++ {
-			fmt.Println("Internet gives a random time of: ", Internet(duration))
-		}
+		r = &Internet{13}
+	case KEYBOARD:
+		r = &Keyboard{}
+	}
+	for i := 0; i < 100; i++ {
+		fmt.Println("Mode gives a random time of: ", r.Mode(duration))
 	}
 
 }

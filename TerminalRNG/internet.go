@@ -7,9 +7,17 @@ import (
 	"time"
 )
 
-func Internet(Time int64) int64 {
+type Internet struct {
+	ID int8
+}
+
+func (I *Internet) Mode(Time int64) int64 {
 	rand.Seed(Time)
 	return getConnectionTime(getRandomUrl(rand.Int63()))
+}
+
+func (I *Internet) Print(Source int64) {
+	fmt.Println("Random ", I.ID, " gives Output of ", I.Mode(Source))
 }
 
 func getConnectionTime(url string) int64 {
